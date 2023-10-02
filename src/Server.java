@@ -2,21 +2,19 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 public class Server {
-    ServerSocket socket;
-
-    Server(ServerSocket socket){
-        this.socket = socket;
-    }
-
-
-    public void start(){
+    public static void main(String[] args) {
+        int port = 8888;
         try{
-            while(!socket.isClosed()){
-                System.out.println("Server started, waiting for client to connect!");
-                Socket s = socket.accept();
-            }
-        } catch (IOException e) {
+            //create a server
+            ServerSocket socket = new ServerSocket(port);
+            System.out.println("Server started, waiting for client connection...");
 
+            //client connected
+            Socket cSocket = socket.accept();
+            System.out.println("Client connected!");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
