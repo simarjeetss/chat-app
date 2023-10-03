@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 public class Server {
     public static void main(String[] args) {
-        int port = 8888;
+        int port = 12345;
         try{
 
             //create a server socket to listen for incoming client connection
@@ -17,7 +17,7 @@ public class Server {
 
             //create input and output streams-> client-1
             BufferedReader in1 = new BufferedReader(new InputStreamReader(csocket1.getInputStream()));
-            PrintWriter out1 = new PrintWriter(csocket1.getOutputStream());
+            PrintWriter out1 = new PrintWriter(csocket1.getOutputStream(), true);
 
             //accept the second client connection
             Socket csocket2 = ssocket.accept();
@@ -25,7 +25,7 @@ public class Server {
 
             //create input and output streams-> client 2
             BufferedReader in2 = new BufferedReader(new InputStreamReader(csocket2.getInputStream()));
-            PrintWriter out2 = new PrintWriter(csocket2.getOutputStream());
+            PrintWriter out2 = new PrintWriter(csocket2.getOutputStream(), true);
 
 
             //creating threads to handle messages from both clients

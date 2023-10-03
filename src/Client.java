@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         String address = "127.0.0.1";
-        int port = 8888;
+        int port = 12345;
 
         try{
             //connecting the server
@@ -19,7 +19,7 @@ public class Client {
 
             //create input and output stream for communication with the server
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream());
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
             //reading messages from the server
             Thread read = new Thread(new ReadHandler(in));
@@ -55,7 +55,8 @@ class ReadHandler implements Runnable{
                 System.out.println(message);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
