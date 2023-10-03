@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 public class Server {
     public static void main(String[] args) {
-        int port = 12345;
+        int port = 10000;
         try{
 
             //create a server socket to listen for incoming client connection

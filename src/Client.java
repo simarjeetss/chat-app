@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         String address = "127.0.0.1";
-        int port = 12345;
+        int port = 10000;
 
         try{
             //connecting the server
