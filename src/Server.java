@@ -29,8 +29,8 @@ public class Server {
 
 
             //creating threads to handle messages from both clients
-            Thread c1thread = new Thread(new CleintHandler(in1,out2));
-            Thread c2thread = new Thread(new CleintHandler(in2,out1));
+            Thread c1thread = new Thread(new ClientHandler(in1,out2));
+            Thread c2thread = new Thread(new ClientHandler(in2,out1));
 
             c1thread.start();
             c2thread.start();
