@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 public class ServerMultiple {
-     static  int PORT = 12345;
+     static  int PORT = 12312;
      static List<ClientHandler> clients = new ArrayList<>();
 
     public static void main(String[] args) {
