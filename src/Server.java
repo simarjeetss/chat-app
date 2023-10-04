@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 public class Server {
     public static void main(String[] args) {
-        int port = 10000;
+        int port = 12312;
         try{
 
             //create a server socket to listen for incoming client connection
@@ -31,8 +31,8 @@ public class Server {
 
 
             //creating threads to handle messages from both clients
-            Thread c1thread = new Thread(new ClientHandler(in1,out2));
-            Thread c2thread = new Thread(new ClientHandler(in2,out1));
+            Thread c1thread = new Thread(new ClientHandler(in1,out2,csocket1));
+            Thread c2thread = new Thread(new ClientHandler(in2,out1,csocket2));
 
             c1thread.start();
             c2thread.start();
@@ -43,19 +43,42 @@ public class Server {
 }
 
 class ClientHandler implements Runnable{
+    Socket cSocket;
     BufferedReader in;
     PrintWriter out;
 
-    ClientHandler(BufferedReader in, PrintWriter out){
+    ClientHandler(BufferedReader in, PrintWriter out, Socket cSocket){
         this.in = in;
         this.out = out;
+        this.cSocket = cSocket;
     }
 
     public void run(){
         String message;
         try{
-            while((message = in.readLine()) != null){
-                System.out.println("Received: " + message);
+//            while((message = in.readLine()) != null){
+//                System.out.println("Received: " + message);
+//
+//                if(message.toLowerCase() == "bye"){
+//                    System.out.println("Client disconnected.");
+//                    cSocket.close();
+//                    break;
+//                }
+//                out.println(message);
+//
+//            }
+
+            while(!cSocket.isClosed()){
+                if((message = in.readLine()) != null){
+                    System.out.println("Received :- " + message);
+                    if(message.equalsIgnoreCase("bye")){
+                        System.out.println("Client disconnected.");
+                        out.println("Bye");
+                        cSocket.close();
+                        break;
+                    }
+
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

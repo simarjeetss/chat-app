@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         String address = "127.0.0.1";
-        int port = 10000;
+        int port = 12312;
 
         try{
             //connecting the server
@@ -33,7 +33,8 @@ public class Client {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
@@ -51,6 +52,7 @@ class ReadHandler implements Runnable{
         try{
             while((message = in.readLine()) != null){
                 System.out.println(message);
+
             }
         } catch (IOException e) {
 //            throw new RuntimeException(e);
